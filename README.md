@@ -1,4 +1,5 @@
-#sysverilog
+# **sysverilog**
+# My journey to evolve from PCBs to FPGAs!
 
 ## Useful git Repos
 1. [verilator](https://github.com/verilator/verilator)
@@ -10,20 +11,71 @@
 7. [OpenLane](https://github.com/The-OpenROAD-Project/OpenLane)
 8. [basic_vilog](https://github.com/pConst/basic_verilog)
 
-## Useful Resources
+## Useful Resource
+
 1. [Icarus Verilog](http://iverilog.icarus.com/)
 2. [fromReddit](https://www.reddit.com/r/FPGA/comments/omrnrk/list_of_useful_links_for_beginners_and_veterans/)
 3. [Vivado Simulator Scripted flow](https://www.itsembedded.com/dhd/vivado_sim_1/)
 4. [GNU Make](https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_6.html)
 5. [Verilator Tutorial](https://www.itsembedded.com/dhd/verilator_1/)
 
-***
+## FPGA Interview notes
+* **Interview Q&A Resource #1**
+    - [NandLand Link](https://www.nandland.com/articles/interview-questions-for-fpga.html)
+    1. Name some Flip-Flops
+        - 
+    2. Name some Latches
+        - 
+    3. Difference between FF and Latch
+        - 
+    4. Why use an FPGA in a design?
+        - 
+    5. What does a for loop do in synthesizable code? Does it work the same way as in a software language like C?
+        - 
+    6. Describe the differences between SRAM and DRAM
+        - 
+    7. ***What is the purpose of a PLL***
+        - PLL stand for Phase-locked loop and is commonly used inside FPGAs to generate desired clock frequencies. PLLs are built-in to the FPGA fabric and are able to take an input clock and derive a unique out-of-phase clock from that input clock. They are very useful if your design requires several unique clocks to be running internally.
+    8. Describe the difference between inference and instantiation
+        -
+    9. What is metastability, how would you prevent it?
+        -
+    10. What is a FIFO?
+        -
+    11. What is Block RAM?
+        -
+    12. Describe how a UART works and where it bight be used?
+        -
+    13. What is the difference between synchronous and asynchronous logic?
+        -
+    14. What is a shift register in an FPGA?
+        -
+    15. Describe some differences between VHDL and Verilog?
+        -
+    16. What should you be concerned about when crossing clock domains in an FPGA?
+        -
+    17. Describe setup and hold time, what happens if they are violated?
+        -
+    18. What's the difference between a melee and moore machine?
+        -
+    19. What is the purpose of the synthesis tools?
+        -
+    20. What happens during Place and Route?
+        -
+    21. What is a SERDES transceiver and where are they used?
+        -
+    22. What is the purpose of a DSP tile in an FPGA?
+        - 
+    23. What projects have you done?  What technologies have you worked with?
+        -
+    24. Be prepared to talk in detail about your own experience using FPGAs! Have an interesting project to discuss.  Bonus points if you put a link to a GitHub repository on your resume and show your source code.
+
+    
+
 ## Book Notes
 - [Book Link](https://learning.oreilly.com/library/view/digital-integrated-circuit/9780124080591/B9780124080591000020/B9780124080591000020.xhtml#s0010)
 
 ## Chapter 2: Bottom-up Design
-
-### **Primitive instantiation**
 
 - **Tri-state driver functions**
     * name   | control = 0  | control = 1  |
@@ -49,4 +101,44 @@
     * Three identical outputs tracking one output
         - buf BIGBUF(O1, O2, O3, A);
 
-- **Designing wiht primitives**
+- **Verilog Radices**
+    * b = Binary
+    * o = Octal
+    * d = Decimal
+    * h = Hexadecimal
+    * A = 1'b0;  //One binary bit with value of 0
+    * BYTEBUS = 8'HAA // eight-bit hex data with binary (10101010)
+
+- **Timescale Units**
+    * 1 ns / 1 ns = time unit / precision
+    * only the numbers 1 , 10, and 100 can be used in `timescale 1 ns / 1ns
+    * s = Seconds
+    * ms = milliseconds
+    * us = microseconds
+    * ns = Nanoseconds
+    * ps = picoseconds
+    * fs = femoseconds
+    * in SysVerilog use: timeunit 1ns; timeprecision 10ps;
+
+## Chapter 3: Blocks, Variables, and Operators
+- RTL = Register Transfer Level
+- **Edge Specifiers**
+    * always_ff @(posedge CLOCK, negedge RESET) //System Verilog
+    * always @(posedge CLOCK, negedge RESET) //Verilog 2001
+    * always @(posedge CLOCK or negedge RESET) //Verilog 95
+
+- **Continuous Assignments**
+    * Not Recomended due to Simulation Time increase.
+    * Systemverilog example
+    input A, B, CARRY_IN;
+    output wire SUM, CARRY_OUT;
+    assign SUM = DATA1 + DATA2
+
+- **Implicit Continuous Assignments**
+    * Avoid
+    * Systemverilog example
+    input [7:0] DATA1, DATA2;
+    output wire [8:0] SUM = DATA1 + DATA2
+
+- **Functional Blocks: always and initial**
+

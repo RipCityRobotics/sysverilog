@@ -8,6 +8,8 @@ SOURCES_SV := \
     ../SRC/adder.sv \
     ../SRC/subtractor.sv \
     ../SRC/tb.sv \
+	../SRC/mux2_1.sv \
+	../SRC/tb_mux2_1.sv \
 
 COMP_OPTS_SV := \
     --incr \
@@ -17,7 +19,7 @@ DEFINES_SV :=
 SOURCES_VHDL := ../SRC/subtractor.vhdl
 COMP_OPTS_VHDL := --incr --relax
 
-TB_TOP := tb
+TB_TOP := tb_mux2_1
 
 SUB ?= VHDL
 ifeq ($(SUB), VHDL)
